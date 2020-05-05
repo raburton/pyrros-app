@@ -1,0 +1,2 @@
+rootProject.name='Pyrros'
+include ':Pyrros', ':ibluz'

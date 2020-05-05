@@ -1,0 +1,3 @@
+Pyrros icon vector: https://vectr.com/raburton/cMk9bCxXL
+Icon creator: https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
+Icon background colour: 673AB7
