@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -25,12 +26,13 @@ import com.actions.ibluz.factory.BluzDeviceFactory;
 import com.actions.ibluz.factory.IBluzDevice;
 import com.actions.ibluz.manager.BluzManager;
 import com.actions.ibluz.manager.BluzManagerData;
-import org.burtons.ns.pyrros.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 101;
     private static final int MY_PERMISSIONS_REQUEST_BLUETOOTH = 102;
+    private static final int MY_PERMISSIONS_REQUEST_BLUETOOTH_CONNECT = 103;
+    private static final int MY_PERMISSIONS_REQUEST_BLUETOOTH_SCAN = 104;
 
     private static final int CUSTOM_COMMAND_NAME = 128;
     private static final int CUSTOM_COMMAND_LIGHT = 131;
@@ -165,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_FINE_LOCATION: {
                 if ((grantResults.length == 0) || (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
@@ -176,20 +179,40 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), this.getString(R.string.msg_perm_bluetooth), Toast.LENGTH_LONG).show();
                 }
             }
+            case MY_PERMISSIONS_REQUEST_BLUETOOTH_CONNECT: {
+                if ((grantResults.length == 0) || (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
+                    Toast.makeText(getApplicationContext(), this.getString(R.string.msg_perm_bluetooth_connect), Toast.LENGTH_LONG).show();
+                }
+            }
+            case MY_PERMISSIONS_REQUEST_BLUETOOTH_SCAN: {
+                if ((grantResults.length == 0) || (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
+                    Toast.makeText(getApplicationContext(), this.getString(R.string.msg_perm_bluetooth_scan), Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 
     private boolean checkPermissions() {
         boolean ret = true;
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+        if ((Build.VERSION.SDK_INT <= 30) && (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED)) {
             ret = false;
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH}, MY_PERMISSIONS_REQUEST_BLUETOOTH);
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if ((Build.VERSION.SDK_INT <= 30) && (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             ret = false;
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+        }
+
+        if ((Build.VERSION.SDK_INT > 30) && (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)) {
+            ret = false;
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, MY_PERMISSIONS_REQUEST_BLUETOOTH_CONNECT);
+        }
+
+        if ((Build.VERSION.SDK_INT > 30) && (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED)) {
+            ret = false;
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, MY_PERMISSIONS_REQUEST_BLUETOOTH_SCAN);
         }
 
         return ret;

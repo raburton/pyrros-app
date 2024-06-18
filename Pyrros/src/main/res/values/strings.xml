@@ -14,9 +14,11 @@
     <string name="label_rename">The light needs to be physically powered off (then wait a few seconds) and back on for the new name to take effect.</string>
     <string name="msg_renamed">Device renamed to %1$s</string>
     <string name="label_other">Other:</string>
-    <string name="msg_about">This simple app is provided to control the functions of the B&amp;Q PYRROS ceiling light/bluetooth speaker. The official app is obsolete (though the light is still for sale), is no longer found in the Play store, and doesn\'t work on modern versions of Android if you download it elsewhere. Some other apps on the Play Store do work with this light but have various other unwanted features. Also, I don\'t want to run random chinese apps on my phone (some of which have dubious \"analytic\" components in them). This app uses a library from the maker of the component (which I cannot vouch for) and the rest of the very simple code is my own - which contains no ads, no tracking/analytics, sends no info to anyone, and does nothing untoward. It is also open source so you can review the code https://github.com/raburton/pyrros-app</string>
+    <string name="msg_about">This simple app is provided to control the functions of the B&amp;Q PYRROS ceiling light/bluetooth speaker. The official app is obsolete (long before they stopped selling the light), is no longer found in the Play store, and doesn\'t work on modern versions of Android if you download it elsewhere. Some other apps on the Play Store do work with this light but have various other unwanted features. Also, I don\'t want to run random chinese apps on my phone (some of which have dubious \"analytic\" components in them). This app uses a library from the maker of the component (which I cannot vouch for) but the rest of the very simple code is my own - which contains no ads, no tracking/analytics, sends no info to anyone, and does nothing untoward. It is also open source so you can review the code https://github.com/raburton/pyrros-app</string>
     <string name="title_rename">Rename</string>
     <string name="title_about">About</string>
     <string name="msg_perm_bluetooth">Bluetooth permission is required to connect to the light.</string>
-    <string name="msg_perm_location">Location permission is required to use bluetooth, to connect to the light.</string>
+    <string name="msg_perm_location">Bluetooth needs location permission to connect to the light.</string>
+    <string name="msg_perm_bluetooth_connect">Bluetooth connect permission is required to connect to the light.</string>
+    <string name="msg_perm_bluetooth_scan">Bluetooth scan permission is required to connect to the light.</string>
 </resources>
