@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme"
         android:minSdkVersion="23"
         android:targetSdkVersion="35"
-        android:versionCode="1"
+        android:versionCode="2"
         android:versionName="1.0.1">
         <activity android:name="org.burtons.ns.pyrros.MainActivity" android:exported="true">
             <intent-filter>
